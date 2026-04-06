@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>John's Clean Bulk Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f0e0c;
+    --surface: #1a1814;
+    --card: #211f1b;
+    --border: #2e2b25;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --cream: #f0ead8;
+    --muted: #7a7060;
+    --green: #5a8a5a;
+    --red: #8a3a2a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    padding: 0 0 60px 0;
+  }
+
+  header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 40px 24px 32px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: 50%; transform: translateX(-50%);
+    width: 400px; height: 200px;
+    background: radial-gradient(ellipse, rgba(201,168,76,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .header-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 4px 14px;
+    border-radius: 2px;
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 7vw, 52px);
+    font-weight: 900;
+    line-height: 1.05;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+
+  h1 span { color: var(--gold); }
+
+  .header-sub {
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+    margin-top: 10px;
+  }
+
+  .macro-bar {
+    display: flex;
+    gap: 1px;
+    background: var(--border);
+    margin: 32px 24px 0;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .macro-cell {
+    flex: 1;
+    background: var(--card);
+    padding: 14px 10px;
+    text-align: center;
+  }
+
+  .macro-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--gold-light);
+    display: block;
+  }
+
+  .macro-label {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 2px;
+    display: block;
+  }
+
+  .week-nav {
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+    padding: 24px 24px 0;
+    scrollbar-width: none;
+  }
+  .week-nav::-webkit-scrollbar { display: none; }
+
+  .day-tab {
+    flex-shrink: 0;
+    padding: 8px 18px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .day-tab.active, .day-tab:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--bg);
+  }
+
+  .day-content { display: none; padding: 24px; }
+  .day-content.active { display: block; }
+
+  .day-header {
+    margin-bottom: 20px;
+  }
+
+  .day-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--cream);
+  }
+
+  .day-kcal {
+    font-size: 12px;
+    color: var(--gold);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  .meal-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 14px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .meal-card:hover { border-color: var(--gold); }
+
+  .meal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+  }
+
+  .meal-type {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .meal-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--cream);
+    margin-top: 2px;
+  }
+
+  .meal-cal {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 500;
+    text-align: right;
+    flex-shrink: 0;
+    margin-left: 12px;
+  }
+
+  .meal-cal strong {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--gold-light);
+    font-weight: 700;
+  }
+
+  .meal-body {
+    padding: 16px 18px;
+    display: none;
+  }
+
+  .meal-body.open { display: block; }
+
+  .macro-pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+  }
+
+  .pill {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  .pill-p { background: rgba(90,138,90,0.2); color: #8ec98e; border: 1px solid rgba(90,138,90,0.3); }
+  .pill-c { background: rgba(201,168,76,0.15); color: var(--gold-light); border: 1px solid rgba(201,168,76,0.25); }
+  .pill-f { background: rgba(138,58,42,0.2); color: #d4897a; border: 1px solid rgba(138,58,42,0.3); }
+
+  .ingredients {
+    margin-bottom: 12px;
+  }
+
+  .section-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  .ing-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .ing-list li {
+    font-size: 12px;
+    color: var(--cream);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 3px 10px;
+    opacity: 0.85;
+  }
+
+  .instructions {
+    font-size: 13px;
+    color: #b0a892;
+    line-height: 1.7;
+  }
+
+  .instructions strong {
+    color: var(--cream);
+    font-weight: 500;
+  }
+
+  .snack-row {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-bottom: 14px;
+  }
+
+  .snack-row .meal-type { margin-bottom: 6px; }
+
+  .snack-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .snack-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-size: 12px;
+    color: var(--cream);
+  }
+
+  .snack-item span {
+    display: block;
+    font-size: 10px;
+    color: var(--gold);
+    margin-top: 2px;
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 24px 0;
+  }
+
+  .grocery-section {
+    padding: 0 24px;
+  }
+
+  .grocery-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 4px;
+  }
+
+  .grocery-sub {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  .grocery-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .grocery-cat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+  }
+
+  .grocery-cat-title {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  .grocery-cat ul {
+    list-style: none;
+  }
+
+  .grocery-cat ul li {
+    font-size: 12px;
+    color: #b0a892;
+    padding: 4px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .grocery-cat ul li:last-child { border-bottom: none; }
+
+  .grocery-cat ul li::before {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+    opacity: 0.5;
+  }
+
+  .tips-box {
+    background: linear-gradient(135deg, rgba(201,168,76,0.08), rgba(201,168,76,0.03));
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 24px;
+  }
+
+  .tips-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gold-light);
+    margin-bottom: 12px;
+  }
+
+  .tips-list {
+    list-style: none;
+  }
+
+  .tips-list li {
+    font-size: 13px;
+    color: #b0a892;
+    padding: 6px 0;
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .tips-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+  }
+
+  .grocery-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+    color: #b0a892;
+    gap: 12px;
+  }
+
+  .grocery-line:last-child { border-bottom: none; }
+
+  .price {
+    color: var(--gold-light);
+    font-weight: 500;
+    flex-shrink: 0;
+    font-size: 12px;
+  }
+
+  .toggle-icon {
+    font-size: 18px;
+    color: var(--muted);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+
+  .meal-card.open .toggle-icon { transform: rotate(45deg); color: var(--gold); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-tag">Clean Bulk · 6'1" · 161 lbs</div>
+  <h1>John's <span>Bulk</span><br>Meal Plan</h1>
+  <p class="header-sub">Italian-forward · High calorie · No chicken · No white rice</p>
+  <div class="macro-bar">
+    <div class="macro-cell"><span class="macro-val">3,705</span><span class="macro-label">Calories</span></div>
+    <div class="macro-cell"><span class="macro-val">231g</span><span class="macro-label">Protein</span></div>
+    <div class="macro-cell"><span class="macro-val">417g</span><span class="macro-label">Carbs</span></div>
+    <div class="macro-cell"><span class="macro-val">124g</span><span class="macro-label">Fat</span></div>
+  </div>
+</header>
+
+<div class="week-nav">
+  <div class="day-tab active" onclick="switchDay(0)">Mon</div>
+  <div class="day-tab" onclick="switchDay(1)">Tue</div>
+  <div class="day-tab" onclick="switchDay(2)">Wed</div>
+  <div class="day-tab" onclick="switchDay(3)">Thu</div>
+  <div class="day-tab" onclick="switchDay(4)">Fri</div>
+  <div class="day-tab" onclick="switchDay(5)">Sat</div>
+  <div class="day-tab" onclick="switchDay(6)">Sun</div>
+</div>
+
+<!-- MONDAY -->
+<div class="day-content active" id="day-0">
+  <div class="day-header">
+    <div class="day-title">Monday</div>
+    <div class="day-kcal">~3,700 kcal · Italian Pasta Night</div>
+  </div>
+
+  <div class="meal-card" onclick="toggleMeal(this)">
+    <div class="meal-header">
+      <div><div class="meal-type">Meal 1 · Morning</div><div class="meal-name">Cottage Cheese Power Bowl</div></div>
+      <div class="meal-cal"><strong>~820</strong>kcal</div>
+      <div class="toggle-icon">+</div>
+    </div>
+    <div class="meal-body">
+      <div class="macro-pills">
+        <span class="pill pill-p">55g protein</span>
+        <span class="pill pill-c">90g carbs</span>
+        <span class="pill pill-f">22g fat</span>
+      </div>
+      <div class="ingredients">
+        <div class="section-label">Ingredients</div>
+        <ul class="ing-list">
+          <li>1.5 cups cottage cheese (full fat)</li>
+          <li>1 cup blueberries</li>
+          <li>1 banana</li>
+          <li>2 tbsp honey</li>
+          <li>3 tbsp granola</li>
+          <li>1 tbsp peanut butter</li>
+        </ul>
+      </div>
+      <div class="instructions"><strong>How:</strong> Layer it like a parfait — cottage cheese base, fruit on top, drizzle honey, drop the granola and PB last. Takes 2 minutes. Tastes like dessert.</div>
+    </div>
+  </div>
+
+  <div class="snack-row">
+    <div class="meal-type">Snack · Mid-day</div>
+    <div class="snack-items">
+      <div class="snack-item">Greek Yogurt (1 cup)<span>~200 kcal · 20g protein</span></div>
+      <div class="snack-item">Mixed Nuts (1.5 oz)<span>~250 kcal · 6g protein</span></div>
+      <div class="snack-item">Sourdough + Avocado<span>~320 kcal · 8g protein</span></div>
+    </div>
+  </div>
+
+  <div class="meal-card" onclick="toggleMeal(this)">
+    <div class="meal-header">
+      <div><div class="meal-type">Meal 2 · Dinner</div><div class="meal-name">Rigatoni Bolognese</div></div>
+      <div class="meal-cal"><strong>~1,100</strong>kcal</div>
+      <div class="toggle-icon">+</div>
+    </div>
+    <div class="meal-body">
+      <div class="macro-pills">
+        <span class="pill pill-p">72g protein</span>
+        <span class="pill pill-c">110g carbs</span>
+        <span class="pill pill-f">38g fat</span>
+      </div>
+      <div class="ingredients">
+        <div class="section-label">Ingredients</div>
+        <ul class="ing-list">
+          <li>5 oz rigatoni (dry)</li>
+          <li>6 oz 80/20 ground beef</li>
+          <li>1/2 cup crushed San Marzano tomatoes</li>
+          <li>1/4 cup whole milk</li>
+          <li>1/4 onion, diced</li>
+          <li>2 garlic cloves</li>
+          <li>Parmesan to finish</li>
+          <li>Olive oil, salt, pepper</li>
+        </ul>
+      </div>
+      <div class="instructions"><strong>How:</strong> Brown beef with onion + garlic in olive oil. Add crushed tomatoes, simmer 10 min. Splash of whole milk to round it out (this is the real Italian trick). Cook pasta al dente, toss in sauce. Finish with real parmesan. 20 min total.</div>
+    </div>
+  </div>
+
+  <div class="meal-card" onclick="toggleMeal(this)">
+    <div class="meal-header">
+      <div><div class="meal-type">Meal 3 · Late</div><div class="meal-name">Steak & Roasted Potatoes</div></div>
+      <div class="meal-cal"><strong>~950</strong>kcal</div>
+      <div class="toggle-icon">+</div>
+    </div>
+    <div class="meal-body">
+      <div class="macro-pills">
+        <span class="pill pill-p">62g protein</span>
+        <span class="pill pill-c">80g carbs</span>
+        <span class="pill pill-f">36g fat</span>
+      </div>
+      <div class="ingredients">
+        <div class="section-label">Ingredients</div>
+        <ul class="ing-list">
+          <li>8 oz sirloin steak</li>
+          <li>3 medium Yukon gold potatoes</li>
+          <li>2 tbsp butter</li>
+          <li>Garlic powder, rosemary, salt</li>
+          <li>Olive oil</li>
+        </ul>
+      </div>
+      <div class="instructions"><strong>How:</strong> Cube potatoes, toss in olive oil + rosemary + garlic powder, roast at 425°F for 25 min. Sear steak in cast iron 3 min each side, rest 5 min, finish with butter baste. This is the meal you look forward to all day.</div>
+    </div>
+  </div>
+</div>
+
+<!-- TUESDAY -->
+<div class="day-content" id="day-1">
+  <div class="day-header">
+    <div class="day-title">Tuesday</div>
+    <div class="day-kcal">~3,700 kcal · Smash Burger Day</div>
+  </div>
+
+  <div class="meal-card" onclick="toggleMeal(this)">
+    <div class="meal-header">
+      <div><div class="meal-type">Meal 1 · Morning</div><div class="meal-name">Loaded Breakfast Skillet</div></div>
+      <div class="meal-cal"><strong>~900</strong>kcal</div>
+      <div class="toggle-icon">+</div>
+    </div>
+    <div class="meal-body">
+      <div class="macro-pills">
+        <span class="pill pill-p">52g protein</span>
+        <span class="pill pill-c">75g carbs</span>
+        <span class="pill pill-f">38g fat</span>
+      </div>
+      <div class="ingredients">
+        <div class="section-label">Ingredients</div>
+        <ul class="ing-list">
+          <li>4 whole eggs</li>
+          <li>3 oz turkey sausage</li>
+          <li>1 cup diced potatoes (or frozen hash browns)</li>
+          <li>1/2 bell pepper</li>
+          <li>1/4 onion</li>
+          <li>Shredded cheddar</li>
+          <li>2 slices sourdough toast</li>
+        </ul>
+      </div>
+      <div class="instructions"><strong>How:</strong> Cook potatoes in skillet until crispy. Add sausage, peppers, onion. Make wells, crack eggs in, scramble everything together. Top with cheddar, let it melt. Toast sourdough on the side. One pan, 15 minutes.</div>
+    </div>
+  </div>
+
+  <div class="snack-row">
+    <div class="meal-type">Snack · Mid-day</div>
+    <div class="snack-items">
+      <div class="snack-item">Protein shake (2 scoops)<span>~300 kcal · 50g protein</span></div>
+      <div class="snack-item">Banana + PB (2 tbsp)<span>~300 kcal · 8g protein</span></div>
+    </div>
+  </div>
+
+  <div class="meal-card" onclick="toggleMeal(this)">
+    <div class="meal-header">
+      <div><div class="meal-type">Meal 2 · Dinner</div><div class="meal-name">Double Smash Burger</div></div>
+      <div class="meal-cal"><strong>~1,050</strong>kcal</div>
+      <div class="toggle-icon">+</div>
+    </div>
+    <div class="meal-body">
+      <div class="macro-pills">
+        <span class="pill pill-p">68g protein</span>
+        <span class="pill pill-c">70g carbs</span>
+        <span class="pill pill-f">45g fat</span>
+      </div>
+      <div class="ingredients">
+        <div class="section-label">Ingredients</div>
+        <ul class="ing-list">
+          <li>2x 4oz 80/20 ground beef patties</li>
+          <li>2 slices American cheese</li>
+          <li>Brioche bun</li>
+          <li>Shredded lettuce, onion, pickles</li>
+          <li>Special sauce (mayo + ketchup + mustard + pickle juice)</li>
+          <li>Side: baked sweet potato fries</li>
+        </ul>
+      </div>
+      <div class="instructions"><strong>How:</strong> Ripping hot skillet or griddle. Drop beef ball, smash hard with spatula, salt immediately. 2 min, flip, cheese on top. Stack. Sweet potato fries in air fryer at 400°F for 15 min. You will not miss fast food after this.</div>
+    </div>
+  </div>
+
+  <div class="meal-card" onclick="toggleMeal(this)">
+    <div class="meal-header">
+      <div><div class="meal-type">Meal 3 · Late</div><div class="meal-name">Oat & Protein Stack</div></div>
+      <div class="meal-cal"><strong>~700</strong>kcal</div>
+      <div class="toggle-icon">+</div>
+    </div>
+    <div class="meal-body">
+      <div class="macro-pills">
+        <span class="pill pill-p">48g protein</span>
+        <span class="pill pill-c">85g carbs</span>
+        <span class="pill pill-f">14g fat</span>
+      </div>
+      <div class="ingredients">
+        <div class="section-label">Ingredients</div>
+        <ul class="ing-list">
+          <li>1.5 cups rolled oats</li>
+          <li>1 scoop whey protein (mixed in)</li>
+          <li>1 tbsp honey</li>
+          <li>1/2 cup whole milk</li>
+          <li>Cinnamon, vanilla extract</li>
+          <li>Sliced banana on top</li>
+        </ul>
+      </div>
+      <div class="instructions"><strong>How:</strong> Cook oats in whole milk for creaminess. Stir in whey off heat (so it doesn't clump). Add honey, cinnamon, vanilla. Slice banana on top. This doubles as a late-night option or pre-bed meal — solid casein alternative.</div>
+    </div>
+  </div>
+</div>
+
+<!-- WEDNESDAY -->
+<div class="day-content" id="day-2">
+  <div class="day-header">
+    <div class="day-title">Wednesday</div>
+    <div class="day-kcal">~3,700 kcal · Italian Focus Day</div>
+  </div>
+
+  <div class="meal-card" onclick="toggleMeal(this)">
+    <div class="meal-header">
+      <div><div class="meal-type">Meal 1 · Morning</div><div class="meal-name">High-Protein French Toast</div></div>
+      <div class="meal-cal"><strong>~850</strong>kcal</div>
+      <div class="toggle-icon">+</div>
+    </div>
+    <div class="meal-body">
+      <div class="macro-pills">
+        <span class="pill pill-p">45g protein</span>
+        <span class="pill pill-c">95g carbs</span>
+        <span class="pill pill-f">28g fat</span>
+      </div>
+      <div class="ingredients">
+        <div class="section-label">Ingredients</div>
+        <ul class="ing-list">
+          <li>4 thick slices brioche</li>
+          <li>4 eggs</li>
+          <li>1/4 cup whole milk</li>
+          <li>Cinnamon + vanilla</li>
+          <li>2 tbsp butter</li>
+          <li>Maple syrup + fresh strawberries</li>
+          <li>Side: 1 cup Greek yogurt</li>
+        </ul>
+      </div>
+      <div class="instructions"><strong>How:</strong> Whisk eggs, milk, cinnamon, vanilla. Soak brioche slices 30 sec per side. Cook in butter on medium heat until golden. Stack with strawberries + maple syrup. Greek yogurt on the side for the protein bump.</div>
+    </div>
+  </div>
+
+  <div class="snack-row">
+    <div class="meal-type">Snack · Mid-day</div>
+    <div class="snack-items">
+      <div class="snack-item">Tuna on crackers (1 can)<span>~280 kcal · 30g protein</span></div>
+      <div class="snack-item">String cheese x2<span>~160 kcal · 14g protein</span></div>
+      <div class="snack-item">Apple + almond butter<span>~280 kcal · 7g protein</span></div>
+    </div>
+  </div>
+
+  <div class="meal-card" onclick="toggleMeal(this)">
+    <div class="meal-header">
+      <div><div class="meal-type">Meal 2 · Dinner</div><div class="meal-name">Beef & Ricotta Stuffed Shells</div></div>
+      <div class="meal-cal"><strong>~1,150</strong>kcal</div>
+      <div class="toggle-icon">+</div>
+    </div>
+    <div class="meal-body">
+      <div class="macro-pills">
+        <span class="pill pill-p">78g protein</span>
+        <span class="pill pill-c">105g carbs</span>
+        <span class="pill pill-f">40g fat</span>
+      </div>
+      <div class="ingredients">
+        <div class="section-label">Ingredients</div>
+        <ul class="ing-list">
+          <li>12 jumbo pasta shells</li>
+          <li>5 oz ground beef</li>
+          <li>1 cup whole-milk ricotta</li>
+          <li>1 egg (for ricotta mix)</li>
+          <li>1 cup marinara sauce</li>
+          <li>Mozzarella to melt on top</li>
+          <li>Parmesan + basil to finish</li>
+        </ul>
+      </div>
+      <div class="instructions"><strong>How:</strong> Cook shells, mix ricotta + egg + browned beef + seasoning. Stuff shells, layer in baking dish with marinara, top with mozzarella. Bake 375°F covered 20 min, uncovered 5 min. This is real Italian cooking. Make a double batch and refrigerate the rest.</div>
+    </div>
+  </div>
+</div>
+
+<!-- THURSDAY -->
+<div class="day-content" id="day-3">
+  <div class="day-header">
+    <div class="day-title">Thursday</div>
+    <div class="day-kcal">~3,700 kcal · Seafood & Power Day</div>
+  </div>
+
+  <div class="meal-card" onclick="toggleMeal(this)">
+    <div class="meal-header">
+      <div><div class="meal-type">Meal 1 · Morning</div><div class="meal-name">Egg & Potato Hash</div></div>
+      <div class="meal-cal"><strong>~780</strong>kcal</div>
+      <div class="toggle-icon">+</div>
+    </div>
+    <div class="meal-body">
+      <div class="macro-pills">
+        <span class="pill pill-p">42g protein</span>
+        <span class="pill pill-c">82g carbs</span>
+        <span class="pill pill-f">30g fat</span>
+      </div>
+      <div class="ingredients">
+        <div class="section-label">Ingredients</div>
+        <ul class="ing-list">
+          <li>3 eggs + 3 egg whites</li>
+          <li>2 cups diced Yukon gold potatoes</li>
+          <li>1/4 onion + garlic</li>
+          <li>Smoked paprika, cumin, salt</li>
+          <li>Olive oil</li>
+          <li>2 slices sourdough toast</li>
+          <li>Hot sauce optional</li>
+        </ul>
+      </div>
+      <div class="instructions"><strong>How:</strong> Crisp potatoes in olive oil with paprika + cumin — don't rush this step. Add onion, garlic last few minutes. Push to sides, scramble eggs in center. Fold together. Eat with sourdough. This smells incredible while cooking.</div>
+    </div>
+  </div>
+
+  <div class="snack-row">
+    <div class="meal-type">Snack · Mid-day</div>
+    <div class="snack-items">
+      <div class="snack-item">Protein shake + whole milk<span>~400 kcal · 55g protein</span></div>
+      <div class="snack-item">Trail mix (2 oz)<span>~280 kcal · 7g protein</span></div>
+    </div>
+  </div>
+
+  <div class="meal-card" onclick="toggleMeal(this)">
+    <div class="meal-header">
+      <div><div class="meal-type">Meal 2 · Dinner</div><div class="meal-name">Garlic Butter Salmon + Farro</div></div>
+      <div class="meal-cal"><strong>~1,000</strong>kcal</div>
+      <div class="toggle-icon">+</div>
+    </div>
+    <div class="meal-body">
+      <div class="macro-pills">
+        <span class="pill pill-p">70g protein</span>
+        <span class="pill pill-c">88g carbs</span>
+        <span class="pill pill-f">34g fat</span>
+      </div>
+      <div class="ingredients">
+        <div class="section-label">Ingredients</div>
+        <ul class="ing-list">
+          <li>8 oz salmon fillet</li>
+          <li>3 tbsp butter</li>
+          <li>4 garlic cloves, minced</li>
+          <li>Lemon, fresh dill or parsley</li>
+          <li>1 cup dry farro</li>
+          <li>Side: roasted broccoli</li>
+        </ul>
+      </div>
+      <div class="instructions"><strong>How:</strong> Cook farro like pasta (boil, drain). Sear salmon skin-side down 4 min, flip 2 min. In same pan, melt butter + garlic, pour over salmon. Squeeze lemon. Farro is nutty and chewy — nothing bland about it. Broccoli roasted at 425°F with olive oil + parmesan.</div>
+    </div>
+  </div>
+
+  <div class="meal-card" onclick="toggleMeal(this)">
+    <div class="meal-header">
+      <div><div class="meal-type">Meal 3 · Late</div><div class="meal-name">Gnocchi Aglio e Olio</div></div>
+      <div class="meal-cal"><strong>~800</strong>kcal</div>
+      <div class="toggle-icon">+</div>
+    </div>
+    <div class="meal-body">
+      <div class="macro-pills">
+        <span class="pill pill-p">28g protein</span>
+        <span class="pill pill-c">110g carbs</span>
+        <span class="pill pill-f">28g fat</span>
+      </div>
+      <div class="ingredients">
+        <div class="section-label">Ingredients</div>
+        <ul class="ing-list">
+          <li>1 lb store-bought potato gnocchi</li>
+          <li>4 tbsp olive oil</li>
+          <li>6 garlic cloves, thin sliced</li>
+          <li>Red chili flakes</li>
+          <li>Parmesan + fresh parsley</li>
+          <li>Salt + pasta water</li>
+        </ul>
+      </div>
+      <div class="instructions"><strong>How:</strong> Boil gnocchi (they float when done — 2-3 min). Meanwhile slowly toast garlic in olive oil until golden. Add chili flakes. Toss gnocchi in, splash of pasta water to emulsify. Parmesan + parsley to finish. This is one of Italy's simplest, most satisfying dishes.</div>
+    </div>
+  </div>
+</div>
+
+<!-- FRIDAY -->
+<div class="day-content" id="day-4">
+  <div class="day-header">
+    <div class="day-title">Friday</div>
+    <div class="day-kcal">~3,700 kcal · Korean-Style Beef Bowl</div>
+  </div>
+
+  <div class="meal-card" onclick="toggleMeal(this)">
+    <div class="meal-header">
+      <div><div class="meal-type">Meal 1 · Morning</div><div class="meal-name">Protein Pancake Stack</div></div>
+      <div class="meal-cal"><strong>~880</strong>kcal</div>
+      <div class="toggle-icon">+</div>
+    </div>
+    <div class="meal-body">
+      <div class="macro-pills">
+        <span class="pill pill-p">55g protein</span>
+        <span class="pill pill-c">100g carbs</span>
+        <span class="pill pill-f">22g fat</span>
+      </div>
+      <div class="ingredients">
+        <div class="section-label">Ingredients</div>
+        <ul class="ing-list">
+          <li>1 cup oat flour (blend rolled oats)</li>
+          <li>1 scoop vanilla whey</li>
+          <li>2 eggs</li>
+          <li>1/2 cup cottage cheese</li>
+          <li>1/2 tsp baking powder</li>
+          <li>Splash whole milk</li>
+          <li>Blueberries + maple syrup</li>
+        </ul>
+      </div>
+      <div class="instructions"><strong>How:</strong> Blend everything together. Cook on medium low. The cottage cheese makes them fluffy and loaded with protein without tasting like protein powder. Stack with blueberries + real maple syrup. You'll make these on repeat.</div>
+    </div>
+  </div>
+
+  <div class="snack-row">
+    <div class="meal-type">Snack · Mid-day</div>
+    <div class="snack-items">
+      <div class="snack-item">Hard boiled eggs x3<span>~210 kcal · 18g protein</span></div>
+      <div class="snack-item">Sourdough + almond butter<span>~380 kcal · 12g protein</span></div>
+    </div>
+  </div>
+
+  <div class="meal-card" onclick="toggleMeal(this)">
+    <div class="meal-header">
+      <div><div class="meal-type">Meal 2 · Dinner</div><div class="meal-name">Korean Beef Bowl (No Rice)</div></div>
+      <div class="meal-cal"><strong>~1,050</strong>kcal</div>
+      <div class="toggle-icon">+</div>
+    </div>
+    <div class="meal-body">
+      <div class="macro-pills">
+        <span class="pill pill-p">72g protein</span>
+        <span class="pill pill-c">90g carbs</span>
+        <span class="pill pill-f">38g fat</span>
+      </div>
+      <div class="ingredients">
+        <div class="section-label">Ingredients</div>
+        <ul class="ing-list">
+          <li>7 oz ground beef or thinly sliced sirloin</li>
+          <li>3 tbsp soy sauce</li>
+          <li>1 tbsp sesame oil</li>
+          <li>1 tbsp brown sugar + garlic + ginger</li>
+          <li>Base: roasted sweet potato cubes</li>
+          <li>Fried egg on top</li>
+          <li>Green onion + sesame seeds</li>
+        </ul>
+      </div>
+      <div class="instructions"><strong>How:</strong> Cook beef in sesame oil, add soy + sugar + garlic + ginger. The smell alone is ridiculous. Serve over roasted sweet potato cubes instead of rice — more nutrients, more flavor. Top with a fried egg. This is the meal everyone will ask you to make for them.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SATURDAY -->
+<div class="day-content" id="day-5">
+  <div class="day-header">
+    <div class="day-title">Saturday</div>
+    <div class="day-kcal">~3,700 kcal · Meal Prep Day + Big Eats</div>
+  </div>
+
+  <div class="meal-card" onclick="toggleMeal(this)">
+    <div class="meal-header">
+      <div><div class="meal-type">Meal 1 · Brunch</div><div class="meal-name">Big Omelette + Toast</div></div>
+      <div class="meal-cal"><strong>~820</strong>kcal</div>
+      <div class="toggle-icon">+</div>
+    </div>
+    <div class="meal-body">
+      <div class="macro-pills">
+        <span class="pill pill-p">52g protein</span>
+        <span class="pill pill-c">65g carbs</span>
+        <span class="pill pill-f">34g fat</span>
+      </div>
+      <div class="ingredients">
+        <div class="section-label">Ingredients</div>
+        <ul class="ing-list">
+          <li>5 eggs</li>
+          <li>3 oz turkey or ham</li>
+          <li>Spinach, mushrooms, onion</li>
+          <li>Gruyère or cheddar</li>
+          <li>1 tbsp butter</li>
+          <li>3 slices sourdough toast</li>
+          <li>Side: fresh fruit</li>
+        </ul>
+      </div>
+      <div class="instructions"><strong>How:</strong> Low and slow on medium-low heat. Let the eggs set undisturbed, then fold in your fillings. The Gruyère melts beautifully. Don't rush omelettes — the patience is worth it. This is Saturday cooking.</div>
+    </div>
+  </div>
+
+  <div class="snack-row">
+    <div class="meal-type">Snack · Afternoon</div>
+    <div class="snack-items">
+      <div class="snack-item">Protein shake<span>~300 kcal · 50g protein</span></div>
+      <div class="snack-item">Cottage cheese + pineapple<span>~250 kcal · 22g protein</span></div>
+    </div>
+  </div>
+
+  <div class="meal-card" onclick="toggleMeal(this)">
+    <div class="meal-header">
+      <div><div class="meal-type">Meal 2 · Dinner</div><div class="meal-name">Creamy Tuscan Shrimp Pasta</div></div>
+      <div class="meal-cal"><strong>~1,100</strong>kcal</div>
+      <div class="toggle-icon">+</div>
+    </div>
+    <div class="meal-body">
+      <div class="macro-pills">
+        <span class="pill pill-p">65g protein</span>
+        <span class="pill pill-c">110g carbs</span>
+        <span class="pill pill-f">42g fat</span>
+      </div>
+      <div class="ingredients">
+        <div class="section-label">Ingredients</div>
+        <ul class="ing-list">
+          <li>5 oz penne or fettuccine</li>
+          <li>8 oz shrimp (peeled, deveined)</li>
+          <li>1/2 cup heavy cream</li>
+          <li>Sun-dried tomatoes</li>
+          <li>Baby spinach</li>
+          <li>3 garlic cloves</li>
+          <li>Parmesan + chili flakes</li>
+          <li>Olive oil + butter</li>
+        </ul>
+      </div>
+      <div class="instructions"><strong>How:</strong> Sear shrimp in butter + garlic (2 min per side, set aside). Same pan: cream + sun-dried tomatoes + spinach until wilted. Add pasta + shrimp back in. Parmesan + chili flakes. This feels like a restaurant dish. It takes 20 minutes.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SUNDAY -->
+<div class="day-content" id="day-6">
+  <div class="day-header">
+    <div class="day-title">Sunday</div>
+    <div class="day-kcal">~3,700 kcal · Comfort & Prep Day</div>
+  </div>
+
+  <div class="meal-card" onclick="toggleMeal(this)">
+    <div class="meal-header">
+      <div><div class="meal-type">Meal 1 · Morning</div><div class="meal-name">Overnight Oats (Prepped Saturday)</div></div>
+      <div class="meal-cal"><strong>~750</strong>kcal</div>
+      <div class="toggle-icon">+</div>
+    </div>
+    <div class="meal-body">
+      <div class="macro-pills">
+        <span class="pill pill-p">40g protein</span>
+        <span class="pill pill-c">95g carbs</span>
+        <span class="pill pill-f">18g fat</span>
+      </div>
+      <div class="ingredients">
+        <div class="section-label">Ingredients</div>
+        <ul class="ing-list">
+          <li>1.5 cups rolled oats</li>
+          <li>1 cup whole milk</li>
+          <li>1 cup Greek yogurt</li>
+          <li>2 tbsp chia seeds</li>
+          <li>1 tbsp honey</li>
+          <li>Banana + berries on top</li>
+        </ul>
+      </div>
+      <div class="instructions"><strong>How:</strong> Mix everything in a jar Saturday night. By morning it's thick, creamy, and ready. Top with fresh fruit. Zero effort Sunday morning. Make 2 jars and you have Monday breakfast too.</div>
+    </div>
+  </div>
+
+  <div class="snack-row">
+    <div class="meal-type">Snack · Mid-day</div>
+    <div class="snack-items">
+      <div class="snack-item">Beef jerky (2 oz)<span>~160 kcal · 20g protein</span></div>
+      <div class="snack-item">Mixed nuts + dark chocolate<span>~320 kcal · 7g protein</span></div>
+      <div class="snack-item">Protein shake<span>~300 kcal · 50g protein</span></div>
+    </div>
+  </div>
+
+  <div class="meal-card" onclick="toggleMeal(this)">
+    <div class="meal-header">
+      <div><div class="meal-type">Meal 2 · Dinner</div><div class="meal-name">Beef Meatball Sub</div></div>
+      <div class="meal-cal"><strong>~1,100</strong>kcal</div>
+      <div class="toggle-icon">+</div>
+    </div>
+    <div class="meal-body">
+      <div class="macro-pills">
+        <span class="pill pill-p">72g protein</span>
+        <span class="pill pill-c">100g carbs</span>
+        <span class="pill pill-f">42g fat</span>
+      </div>
+      <div class="ingredients">
+        <div class="section-label">Ingredients</div>
+        <ul class="ing-list">
+          <li>8 oz 80/20 ground beef</li>
+          <li>1/4 cup breadcrumbs</li>
+          <li>1 egg</li>
+          <li>Parmesan, garlic, Italian seasoning</li>
+          <li>Marinara sauce (jarred is fine)</li>
+          <li>Hoagie roll</li>
+          <li>Provolone cheese melted on top</li>
+        </ul>
+      </div>
+      <div class="instructions"><strong>How:</strong> Mix beef + breadcrumbs + egg + parmesan + seasonings. Roll into balls, bake at 400°F for 18 min or pan-sear for a crust. Heat in marinara sauce. Load into hoagie, top with provolone, broil 2 min to melt. Sunday done right.</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- GROCERY LIST -->
+<div class="grocery-section">
+  <div class="grocery-title">Weekly Grocery List</div>
+  <div class="grocery-sub">Split between Walmart & Publix — target $100/week total</div>
+
+  <!-- Store toggle -->
+  <div style="display:flex; gap:8px; margin-bottom:20px;">
+    <button onclick="showStore('walmart')" id="btn-walmart" style="flex:1; padding:12px; border-radius:6px; border:none; background:var(--gold); color:var(--bg); font-family:'DM Sans',sans-serif; font-size:13px; font-weight:500; cursor:pointer; letter-spacing:0.5px;">🛒 Walmart ~$68</button>
+    <button onclick="showStore('publix')" id="btn-publix" style="flex:1; padding:12px; border-radius:6px; border:1px solid var(--border); background:var(--card); color:var(--muted); font-family:'DM Sans',sans-serif; font-size:13px; font-weight:500; cursor:pointer; letter-spacing:0.5px;">🟢 Publix ~$32</button>
+  </div>
+
+  <!-- WALMART LIST -->
+  <div id="store-walmart">
+    <div style="background:var(--card); border:1px solid var(--border); border-radius:10px; overflow:hidden; margin-bottom:12px;">
+      <div style="background:rgba(201,168,76,0.08); padding:12px 18px; border-bottom:1px solid var(--border);">
+        <div style="font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:500;">Proteins · ~$28</div>
+      </div>
+      <ul style="list-style:none; padding:0 18px;">
+        <li class="grocery-line"><span>Ground beef 80/20 (3 lbs)</span><span class="price">~$12.00</span></li>
+        <li class="grocery-line"><span>Eggs, 2 dozen (Great Value)</span><span class="price">~$5.50</span></li>
+        <li class="grocery-line"><span>Shrimp, frozen 1 lb (Great Value)</span><span class="price">~$6.00</span></li>
+        <li class="grocery-line"><span>Tuna cans x4 (Great Value)</span><span class="price">~$4.50</span></li>
+      </ul>
+    </div>
+
+    <div style="background:var(--card); border:1px solid var(--border); border-radius:10px; overflow:hidden; margin-bottom:12px;">
+      <div style="background:rgba(201,168,76,0.08); padding:12px 18px; border-bottom:1px solid var(--border);">
+        <div style="font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:500;">Dairy & Fats · ~$18</div>
+      </div>
+      <ul style="list-style:none; padding:0 18px;">
+        <li class="grocery-line"><span>Whole milk, 1 gallon (Great Value)</span><span class="price">~$3.80</span></li>
+        <li class="grocery-line"><span>Cottage cheese, 24 oz (Great Value)</span><span class="price">~$3.50</span></li>
+        <li class="grocery-line"><span>Greek yogurt, 32 oz (Great Value)</span><span class="price">~$4.50</span></li>
+        <li class="grocery-line"><span>Butter, 2 sticks (Great Value)</span><span class="price">~$3.00</span></li>
+        <li class="grocery-line"><span>Shredded mozzarella 2 cups</span><span class="price">~$3.20</span></li>
+      </ul>
+    </div>
+
+    <div style="background:var(--card); border:1px solid var(--border); border-radius:10px; overflow:hidden; margin-bottom:12px;">
+      <div style="background:rgba(201,168,76,0.08); padding:12px 18px; border-bottom:1px solid var(--border);">
+        <div style="font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:500;">Carbs & Pantry · ~$22</div>
+      </div>
+      <ul style="list-style:none; padding:0 18px;">
+        <li class="grocery-line"><span>Pasta (rigatoni + penne + shells)</span><span class="price">~$4.50</span></li>
+        <li class="grocery-line"><span>Potato gnocchi 1 lb</span><span class="price">~$2.50</span></li>
+        <li class="grocery-line"><span>Rolled oats, large (Great Value)</span><span class="price">~$3.50</span></li>
+        <li class="grocery-line"><span>Yukon gold potatoes, 5 lb bag</span><span class="price">~$4.50</span></li>
+        <li class="grocery-line"><span>Sweet potatoes x3</span><span class="price">~$2.50</span></li>
+        <li class="grocery-line"><span>Olive oil (Great Value, 16 oz)</span><span class="price">~$4.50</span></li>
+        <li class="grocery-line"><span>Peanut butter (Great Value, large)</span><span class="price">~$3.50</span></li>
+        <li class="grocery-line"><span>Honey (Great Value)</span><span class="price">~$3.00</span></li>
+        <li class="grocery-line"><span>Soy sauce + sesame oil</span><span class="price">~$4.00</span></li>
+        <li class="grocery-line"><span>Marinara sauce jar</span><span class="price">~$2.50</span></li>
+        <li class="grocery-line"><span>Canned San Marzano tomatoes</span><span class="price">~$2.00</span></li>
+      </ul>
+    </div>
+
+    <div style="background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.25); border-radius:8px; padding:14px 18px; display:flex; justify-content:space-between; align-items:center;">
+      <span style="font-size:13px; color:var(--cream); font-weight:500;">Walmart Subtotal</span>
+      <span style="font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:var(--gold-light);">~$68</span>
+    </div>
+  </div>
+
+  <!-- PUBLIX LIST -->
+  <div id="store-publix" style="display:none;">
+    <div style="background:rgba(34,139,34,0.06); border:1px solid rgba(34,139,34,0.2); border-radius:8px; padding:12px 16px; margin-bottom:14px; font-size:12px; color:#8ec98e; line-height:1.6;">
+      💡 <strong>Publix tip:</strong> Check the weekly BOGO flyer before you go — salmon and shrimp go BOGO regularly. If salmon is BOGO, grab 2 lbs and freeze one.
+    </div>
+
+    <div style="background:var(--card); border:1px solid var(--border); border-radius:10px; overflow:hidden; margin-bottom:12px;">
+      <div style="background:rgba(201,168,76,0.08); padding:12px 18px; border-bottom:1px solid var(--border);">
+        <div style="font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:500;">Fresh Proteins · ~$18</div>
+      </div>
+      <ul style="list-style:none; padding:0 18px;">
+        <li class="grocery-line"><span>Salmon fillet, 1 lb (fresh, Publix seafood)</span><span class="price">~$10.00</span></li>
+        <li class="grocery-line"><span>Turkey sausage, 1 pack</span><span class="price">~$5.50</span></li>
+        <li class="grocery-line"><span>Ricotta, whole milk (Publix brand)</span><span class="price">~$4.00</span></li>
+      </ul>
+    </div>
+
+    <div style="background:var(--card); border:1px solid var(--border); border-radius:10px; overflow:hidden; margin-bottom:12px;">
+      <div style="background:rgba(201,168,76,0.08); padding:12px 18px; border-bottom:1px solid var(--border);">
+        <div style="font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:500;">Fresh Produce · ~$10</div>
+      </div>
+      <ul style="list-style:none; padding:0 18px;">
+        <li class="grocery-line"><span>Bananas, blueberries, strawberries</span><span class="price">~$5.00</span></li>
+        <li class="grocery-line"><span>Spinach, large bag</span><span class="price">~$3.50</span></li>
+        <li class="grocery-line"><span>Bell peppers + onions + garlic</span><span class="price">~$4.00</span></li>
+        <li class="grocery-line"><span>Broccoli (1 head)</span><span class="price">~$2.50</span></li>
+      </ul>
+    </div>
+
+    <div style="background:var(--card); border:1px solid var(--border); border-radius:10px; overflow:hidden; margin-bottom:12px;">
+      <div style="background:rgba(201,168,76,0.08); padding:12px 18px; border-bottom:1px solid var(--border);">
+        <div style="font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:500;">Bread & Specialty · ~$10</div>
+      </div>
+      <ul style="list-style:none; padding:0 18px;">
+        <li class="grocery-line"><span>Sourdough loaf (Publix bakery)</span><span class="price">~$4.00</span></li>
+        <li class="grocery-line"><span>Brioche buns (Publix bakery)</span><span class="price">~$4.50</span></li>
+        <li class="grocery-line"><span>Hoagie rolls x4</span><span class="price">~$3.50</span></li>
+        <li class="grocery-line"><span>Sun-dried tomatoes jar</span><span class="price">~$4.00</span></li>
+        <li class="grocery-line"><span>Parmesan block</span><span class="price">~$5.00</span></li>
+        <li class="grocery-line"><span>Heavy cream, 1 pint</span><span class="price">~$3.50</span></li>
+      </ul>
+    </div>
+
+    <div style="background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.25); border-radius:8px; padding:14px 18px; display:flex; justify-content:space-between; align-items:center;">
+      <span style="font-size:13px; color:var(--cream); font-weight:500;">Publix Subtotal</span>
+      <span style="font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:var(--gold-light);">~$32</span>
+    </div>
+  </div>
+
+  <!-- TOTAL BAR -->
+  <div style="background:var(--surface); border:1px solid var(--gold); border-radius:10px; padding:18px; margin-top:16px; display:flex; justify-content:space-between; align-items:center;">
+    <div>
+      <div style="font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:500; margin-bottom:4px;">Weekly Total</div>
+      <div style="font-size:12px; color:var(--muted);">Walmart + Publix combined</div>
+    </div>
+    <div style="text-align:right;">
+      <div style="font-family:'Playfair Display',serif; font-size:30px; font-weight:900; color:var(--gold-light);">~$100</div>
+      <div style="font-size:11px; color:var(--green);">✓ On budget</div>
+    </div>
+  </div>
+</div>
+
+<div class="tips-box">
+  <div class="tips-title">Hitting 3,700 Calories — The Real Keys</div>
+  <ul class="tips-list">
+    <li>Always cook with whole milk, not water. Always finish pasta with butter or olive oil. These invisible calories add up fast and you never taste "diet."</li>
+    <li>On 2-meal days, add a protein shake made with whole milk + 2 tbsp peanut butter. That's +600 kcal in 30 seconds.</li>
+    <li>Double batch dinners on Sunday or Wednesday — stuffed shells, bolognese, and meatballs all reheat perfectly. Saves time and keeps you on track.</li>
+    <li>Keep mixed nuts, granola, and peanut butter stocked at all times. These are your calorie insurance when life gets busy.</li>
+    <li>Farro and gnocchi are your secret weapons — they hit harder calorically than they seem and actually taste like something.</li>
+    <li>Your target weight of 175-180 is very achievable at your height. At 6'1", 190 lean is realistic long-term — but 175-180 athletic is a great first checkpoint.</li>
+  </ul>
+</div>
+
+<script>
+function switchDay(index) {
+  document.querySelectorAll('.day-content').forEach((el, i) => {
+    el.classList.toggle('active', i === index);
+  });
+  document.querySelectorAll('.day-tab').forEach((el, i) => {
+    el.classList.toggle('active', i === index);
+  });
+}
+
+function showStore(store) {
+  document.getElementById('store-walmart').style.display = store === 'walmart' ? 'block' : 'none';
+  document.getElementById('store-publix').style.display = store === 'publix' ? 'block' : 'none';
+  document.getElementById('btn-walmart').style.background = store === 'walmart' ? 'var(--gold)' : 'var(--card)';
+  document.getElementById('btn-walmart').style.color = store === 'walmart' ? 'var(--bg)' : 'var(--muted)';
+  document.getElementById('btn-walmart').style.border = store === 'walmart' ? 'none' : '1px solid var(--border)';
+  document.getElementById('btn-publix').style.background = store === 'publix' ? 'var(--gold)' : 'var(--card)';
+  document.getElementById('btn-publix').style.color = store === 'publix' ? 'var(--bg)' : 'var(--muted)';
+  document.getElementById('btn-publix').style.border = store === 'publix' ? 'none' : '1px solid var(--border)';
+}
+
+function toggleMeal(card) {
+  const body = card.querySelector('.meal-body');
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  card.classList.toggle('open', !isOpen);
+}
+</script>
+</body>
+</html>
