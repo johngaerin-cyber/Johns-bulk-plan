@@ -1443,7 +1443,32 @@ function toggleInv(el) {
   check.textContent = el.classList.contains('checked') ? '✓' : '○';
   const count = document.querySelectorAll('.inv-item.checked').length;
   document.getElementById('inv-count').textContent = count;
+  saveInventory();
 }
+
+function saveInventory() {
+  const items = document.querySelectorAll('.inv-item');
+  const state = {};
+  items.forEach((el, i) => { state[i] = el.classList.contains('checked'); });
+  localStorage.setItem('bulkplan-inventory', JSON.stringify(state));
+}
+
+function loadInventory() {
+  const saved = localStorage.getItem('bulkplan-inventory');
+  if (!saved) return;
+  const state = JSON.parse(saved);
+  const items = document.querySelectorAll('.inv-item');
+  items.forEach((el, i) => {
+    if (state[i]) {
+      el.classList.add('checked');
+      el.querySelector('.inv-check').textContent = '✓';
+    }
+  });
+  const count = document.querySelectorAll('.inv-item.checked').length;
+  document.getElementById('inv-count').textContent = count;
+}
+
+window.addEventListener('load', loadInventory);
 
 function showStore(store) {
   document.getElementById('store-walmart').style.display = store === 'walmart' ? 'block' : 'none';
