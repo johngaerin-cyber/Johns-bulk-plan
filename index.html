@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -19,440 +20,473 @@
     --red: #8a3a2a;
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+- { margin: 0; padding: 0; box-sizing: border-box; }
 
-  body {
-    background: var(--bg);
-    color: var(--cream);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
-    min-height: 100vh;
-    padding: 0 0 60px 0;
-  }
+body {
+background: var(–bg);
+color: var(–cream);
+font-family: ‘DM Sans’, sans-serif;
+font-weight: 300;
+min-height: 100vh;
+padding: 0 0 60px 0;
+}
 
-  header {
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    padding: 40px 24px 32px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
+header {
+background: var(–surface);
+border-bottom: 1px solid var(–border);
+padding: 40px 24px 32px;
+text-align: center;
+position: relative;
+overflow: hidden;
+}
 
-  header::before {
-    content: '';
-    position: absolute;
-    top: -60px; left: 50%; transform: translateX(-50%);
-    width: 400px; height: 200px;
-    background: radial-gradient(ellipse, rgba(201,168,76,0.12) 0%, transparent 70%);
-    pointer-events: none;
-  }
+header::before {
+content: ‘’;
+position: absolute;
+top: -60px; left: 50%; transform: translateX(-50%);
+width: 400px; height: 200px;
+background: radial-gradient(ellipse, rgba(201,168,76,0.12) 0%, transparent 70%);
+pointer-events: none;
+}
 
-  .header-tag {
-    display: inline-block;
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--gold);
-    border: 1px solid var(--gold);
-    padding: 4px 14px;
-    border-radius: 2px;
-    margin-bottom: 16px;
-  }
+.header-tag {
+display: inline-block;
+font-size: 10px;
+font-weight: 500;
+letter-spacing: 3px;
+text-transform: uppercase;
+color: var(–gold);
+border: 1px solid var(–gold);
+padding: 4px 14px;
+border-radius: 2px;
+margin-bottom: 16px;
+}
 
-  h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(28px, 7vw, 52px);
-    font-weight: 900;
-    line-height: 1.05;
-    color: var(--cream);
-    margin-bottom: 8px;
-  }
+h1 {
+font-family: ‘Playfair Display’, serif;
+font-size: clamp(28px, 7vw, 52px);
+font-weight: 900;
+line-height: 1.05;
+color: var(–cream);
+margin-bottom: 8px;
+}
 
-  h1 span { color: var(--gold); }
+h1 span { color: var(–gold); }
 
-  .header-sub {
-    font-size: 13px;
-    color: var(--muted);
-    letter-spacing: 0.5px;
-    margin-top: 10px;
-  }
+.header-sub {
+font-size: 13px;
+color: var(–muted);
+letter-spacing: 0.5px;
+margin-top: 10px;
+}
 
-  .macro-bar {
-    display: flex;
-    gap: 1px;
-    background: var(--border);
-    margin: 32px 24px 0;
-    border-radius: 8px;
-    overflow: hidden;
-  }
+.macro-bar {
+display: flex;
+gap: 1px;
+background: var(–border);
+margin: 32px 24px 0;
+border-radius: 8px;
+overflow: hidden;
+}
 
-  .macro-cell {
-    flex: 1;
-    background: var(--card);
-    padding: 14px 10px;
-    text-align: center;
-  }
+.macro-cell {
+flex: 1;
+background: var(–card);
+padding: 14px 10px;
+text-align: center;
+}
 
-  .macro-val {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--gold-light);
-    display: block;
-  }
+.macro-val {
+font-family: ‘Playfair Display’, serif;
+font-size: 20px;
+font-weight: 700;
+color: var(–gold-light);
+display: block;
+}
 
-  .macro-label {
-    font-size: 10px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-top: 2px;
-    display: block;
-  }
+.macro-label {
+font-size: 10px;
+letter-spacing: 1.5px;
+text-transform: uppercase;
+color: var(–muted);
+margin-top: 2px;
+display: block;
+}
 
-  .week-nav {
-    display: flex;
-    overflow-x: auto;
-    gap: 8px;
-    padding: 24px 24px 0;
-    scrollbar-width: none;
-  }
-  .week-nav::-webkit-scrollbar { display: none; }
+.week-nav {
+display: flex;
+overflow-x: auto;
+gap: 8px;
+padding: 24px 24px 0;
+scrollbar-width: none;
+}
+.week-nav::-webkit-scrollbar { display: none; }
 
-  .day-tab {
-    flex-shrink: 0;
-    padding: 8px 18px;
-    border-radius: 4px;
-    border: 1px solid var(--border);
-    background: var(--card);
-    color: var(--muted);
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
+.day-tab {
+flex-shrink: 0;
+padding: 8px 18px;
+border-radius: 4px;
+border: 1px solid var(–border);
+background: var(–card);
+color: var(–muted);
+font-size: 12px;
+font-weight: 500;
+letter-spacing: 1px;
+text-transform: uppercase;
+cursor: pointer;
+transition: all 0.2s;
+}
 
-  .day-tab.active, .day-tab:hover {
-    background: var(--gold);
-    border-color: var(--gold);
-    color: var(--bg);
-  }
+.day-tab.active, .day-tab:hover {
+background: var(–gold);
+border-color: var(–gold);
+color: var(–bg);
+}
 
-  .day-content { display: none; padding: 24px; }
-  .day-content.active { display: block; }
+.day-content { display: none; padding: 24px; }
+.day-content.active { display: block; }
 
-  .day-header {
-    margin-bottom: 20px;
-  }
+.day-header {
+margin-bottom: 20px;
+}
 
-  .day-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 26px;
-    font-weight: 700;
-    color: var(--cream);
-  }
+.day-title {
+font-family: ‘Playfair Display’, serif;
+font-size: 26px;
+font-weight: 700;
+color: var(–cream);
+}
 
-  .day-kcal {
-    font-size: 12px;
-    color: var(--gold);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-top: 4px;
-  }
+.day-kcal {
+font-size: 12px;
+color: var(–gold);
+letter-spacing: 1px;
+text-transform: uppercase;
+margin-top: 4px;
+}
 
-  .meal-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    margin-bottom: 14px;
-    overflow: hidden;
-    transition: border-color 0.2s;
-  }
+.meal-card {
+background: var(–card);
+border: 1px solid var(–border);
+border-radius: 10px;
+margin-bottom: 14px;
+overflow: hidden;
+transition: border-color 0.2s;
+}
 
-  .meal-card:hover { border-color: var(--gold); }
+.meal-card:hover { border-color: var(–gold); }
 
-  .meal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 14px 18px;
-    border-bottom: 1px solid var(--border);
-    cursor: pointer;
-  }
+.meal-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 14px 18px;
+border-bottom: 1px solid var(–border);
+cursor: pointer;
+}
 
-  .meal-type {
-    font-size: 9px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--gold);
-    font-weight: 500;
-  }
+.meal-type {
+font-size: 9px;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: var(–gold);
+font-weight: 500;
+}
 
-  .meal-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 17px;
-    font-weight: 700;
-    color: var(--cream);
-    margin-top: 2px;
-  }
+.meal-name {
+font-family: ‘Playfair Display’, serif;
+font-size: 17px;
+font-weight: 700;
+color: var(–cream);
+margin-top: 2px;
+}
 
-  .meal-cal {
-    font-size: 13px;
-    color: var(--muted);
-    font-weight: 500;
-    text-align: right;
-    flex-shrink: 0;
-    margin-left: 12px;
-  }
+.meal-cal {
+font-size: 13px;
+color: var(–muted);
+font-weight: 500;
+text-align: right;
+flex-shrink: 0;
+margin-left: 12px;
+}
 
-  .meal-cal strong {
-    display: block;
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    color: var(--gold-light);
-    font-weight: 700;
-  }
+.meal-cal strong {
+display: block;
+font-family: ‘Playfair Display’, serif;
+font-size: 20px;
+color: var(–gold-light);
+font-weight: 700;
+}
 
-  .meal-body {
-    padding: 16px 18px;
-    display: none;
-  }
+.meal-body {
+padding: 16px 18px;
+display: none;
+}
 
-  .meal-body.open { display: block; }
+.meal-body.open { display: block; }
 
-  .macro-pills {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 14px;
-  }
+.macro-pills {
+display: flex;
+gap: 8px;
+flex-wrap: wrap;
+margin-bottom: 14px;
+}
 
-  .pill {
-    font-size: 11px;
-    font-weight: 500;
-    padding: 3px 10px;
-    border-radius: 20px;
-    letter-spacing: 0.5px;
-  }
+.pill {
+font-size: 11px;
+font-weight: 500;
+padding: 3px 10px;
+border-radius: 20px;
+letter-spacing: 0.5px;
+}
 
-  .pill-p { background: rgba(90,138,90,0.2); color: #8ec98e; border: 1px solid rgba(90,138,90,0.3); }
-  .pill-c { background: rgba(201,168,76,0.15); color: var(--gold-light); border: 1px solid rgba(201,168,76,0.25); }
-  .pill-f { background: rgba(138,58,42,0.2); color: #d4897a; border: 1px solid rgba(138,58,42,0.3); }
+.pill-p { background: rgba(90,138,90,0.2); color: #8ec98e; border: 1px solid rgba(90,138,90,0.3); }
+.pill-c { background: rgba(201,168,76,0.15); color: var(–gold-light); border: 1px solid rgba(201,168,76,0.25); }
+.pill-f { background: rgba(138,58,42,0.2); color: #d4897a; border: 1px solid rgba(138,58,42,0.3); }
 
-  .ingredients {
-    margin-bottom: 12px;
-  }
+.ingredients {
+margin-bottom: 12px;
+}
 
-  .section-label {
-    font-size: 9px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 8px;
-    font-weight: 500;
-  }
+.section-label {
+font-size: 9px;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: var(–muted);
+margin-bottom: 8px;
+font-weight: 500;
+}
 
-  .ing-list {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
+.ing-list {
+list-style: none;
+display: flex;
+flex-wrap: wrap;
+gap: 6px;
+}
 
-  .ing-list li {
-    font-size: 12px;
-    color: var(--cream);
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 3px 10px;
-    opacity: 0.85;
-  }
+.ing-list li {
+font-size: 12px;
+color: var(–cream);
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 4px;
+padding: 3px 10px;
+opacity: 0.85;
+}
 
-  .instructions {
-    font-size: 13px;
-    color: #b0a892;
-    line-height: 1.7;
-  }
+.instructions {
+font-size: 13px;
+color: #b0a892;
+line-height: 1.7;
+}
 
-  .instructions strong {
-    color: var(--cream);
-    font-weight: 500;
-  }
+.instructions strong {
+color: var(–cream);
+font-weight: 500;
+}
 
-  .snack-row {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 16px 18px;
-    margin-bottom: 14px;
-  }
+.snack-row {
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 10px;
+padding: 16px 18px;
+margin-bottom: 14px;
+}
 
-  .snack-row .meal-type { margin-bottom: 6px; }
+.snack-row .meal-type { margin-bottom: 6px; }
 
-  .snack-items {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 8px;
-  }
+.snack-items {
+display: flex;
+flex-wrap: wrap;
+gap: 8px;
+margin-top: 8px;
+}
 
-  .snack-item {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 8px 14px;
-    font-size: 12px;
-    color: var(--cream);
-  }
+.snack-item {
+background: var(–card);
+border: 1px solid var(–border);
+border-radius: 6px;
+padding: 8px 14px;
+font-size: 12px;
+color: var(–cream);
+}
 
-  .snack-item span {
-    display: block;
-    font-size: 10px;
-    color: var(--gold);
-    margin-top: 2px;
-  }
+.snack-item span {
+display: block;
+font-size: 10px;
+color: var(–gold);
+margin-top: 2px;
+}
 
-  .divider {
-    height: 1px;
-    background: var(--border);
-    margin: 24px 0;
-  }
+.divider {
+height: 1px;
+background: var(–border);
+margin: 24px 0;
+}
 
-  .grocery-section {
-    padding: 0 24px;
-  }
+.grocery-section {
+padding: 0 24px;
+}
 
-  .grocery-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--cream);
-    margin-bottom: 4px;
-  }
+.grocery-title {
+font-family: ‘Playfair Display’, serif;
+font-size: 22px;
+font-weight: 700;
+color: var(–cream);
+margin-bottom: 4px;
+}
 
-  .grocery-sub {
-    font-size: 12px;
-    color: var(--muted);
-    margin-bottom: 20px;
-  }
+.grocery-sub {
+font-size: 12px;
+color: var(–muted);
+margin-bottom: 20px;
+}
 
-  .grocery-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
+.grocery-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 12px;
+}
 
-  .grocery-cat {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 16px;
-  }
+.grocery-cat {
+background: var(–card);
+border: 1px solid var(–border);
+border-radius: 10px;
+padding: 16px;
+}
 
-  .grocery-cat-title {
-    font-size: 9px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--gold);
-    font-weight: 500;
-    margin-bottom: 10px;
-  }
+.grocery-cat-title {
+font-size: 9px;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: var(–gold);
+font-weight: 500;
+margin-bottom: 10px;
+}
 
-  .grocery-cat ul {
-    list-style: none;
-  }
+.grocery-cat ul {
+list-style: none;
+}
 
-  .grocery-cat ul li {
-    font-size: 12px;
-    color: #b0a892;
-    padding: 4px 0;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
+.grocery-cat ul li {
+font-size: 12px;
+color: #b0a892;
+padding: 4px 0;
+border-bottom: 1px solid var(–border);
+display: flex;
+align-items: center;
+gap: 8px;
+}
 
-  .grocery-cat ul li:last-child { border-bottom: none; }
+.grocery-cat ul li:last-child { border-bottom: none; }
 
-  .grocery-cat ul li::before {
-    content: '';
-    width: 5px; height: 5px;
-    border-radius: 50%;
-    background: var(--gold);
-    flex-shrink: 0;
-    opacity: 0.5;
-  }
+.grocery-cat ul li::before {
+content: ‘’;
+width: 5px; height: 5px;
+border-radius: 50%;
+background: var(–gold);
+flex-shrink: 0;
+opacity: 0.5;
+}
 
-  .tips-box {
-    background: linear-gradient(135deg, rgba(201,168,76,0.08), rgba(201,168,76,0.03));
-    border: 1px solid rgba(201,168,76,0.2);
-    border-radius: 10px;
-    padding: 20px;
-    margin: 24px;
-  }
+.tips-box {
+background: linear-gradient(135deg, rgba(201,168,76,0.08), rgba(201,168,76,0.03));
+border: 1px solid rgba(201,168,76,0.2);
+border-radius: 10px;
+padding: 20px;
+margin: 24px;
+}
 
-  .tips-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--gold-light);
-    margin-bottom: 12px;
-  }
+.tips-title {
+font-family: ‘Playfair Display’, serif;
+font-size: 18px;
+font-weight: 700;
+color: var(–gold-light);
+margin-bottom: 12px;
+}
 
-  .tips-list {
-    list-style: none;
-  }
+.tips-list {
+list-style: none;
+}
 
-  .tips-list li {
-    font-size: 13px;
-    color: #b0a892;
-    padding: 6px 0;
-    padding-left: 16px;
-    position: relative;
-    line-height: 1.5;
-  }
+.tips-list li {
+font-size: 13px;
+color: #b0a892;
+padding: 6px 0;
+padding-left: 16px;
+position: relative;
+line-height: 1.5;
+}
 
-  .tips-list li::before {
-    content: '→';
-    position: absolute;
-    left: 0;
-    color: var(--gold);
-  }
+.tips-list li::before {
+content: ‘→’;
+position: absolute;
+left: 0;
+color: var(–gold);
+}
 
-  .grocery-line {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 9px 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 12px;
-    color: #b0a892;
-    gap: 12px;
-  }
+.grocery-line {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 9px 0;
+border-bottom: 1px solid var(–border);
+font-size: 12px;
+color: #b0a892;
+gap: 12px;
+}
 
-  .grocery-line:last-child { border-bottom: none; }
+.grocery-line:last-child { border-bottom: none; }
 
-  .price {
-    color: var(--gold-light);
-    font-weight: 500;
-    flex-shrink: 0;
-    font-size: 12px;
-  }
+.price {
+color: var(–gold-light);
+font-weight: 500;
+flex-shrink: 0;
+font-size: 12px;
+}
 
-  .toggle-icon {
-    font-size: 18px;
-    color: var(--muted);
-    transition: transform 0.2s;
-    flex-shrink: 0;
-  }
+.inv-item {
+display: flex;
+align-items: center;
+gap: 12px;
+padding: 10px 14px;
+background: var(–card);
+border: 1px solid var(–border);
+border-radius: 8px;
+margin-bottom: 6px;
+cursor: pointer;
+font-size: 13px;
+color: #b0a892;
+transition: all 0.15s;
+}
 
-  .meal-card.open .toggle-icon { transform: rotate(45deg); color: var(--gold); }
+.inv-item.checked {
+background: rgba(90,138,90,0.12);
+border-color: rgba(90,138,90,0.3);
+color: #8ec98e;
+text-decoration: line-through;
+opacity: 0.7;
+}
+
+.inv-check {
+font-size: 16px;
+flex-shrink: 0;
+color: var(–muted);
+transition: all 0.15s;
+}
+
+.inv-item.checked .inv-check {
+color: #8ec98e;
+}
+font-size: 18px;
+color: var(–muted);
+transition: transform 0.2s;
+flex-shrink: 0;
+}
+
+.meal-card.open .toggle-icon { transform: rotate(45deg); color: var(–gold); }
 </style>
+
 </head>
 <body>
 
@@ -479,6 +513,7 @@
 </div>
 
 <!-- MONDAY -->
+
 <div class="day-content active" id="day-0">
   <div class="day-header">
     <div class="day-title">Monday</div>
@@ -513,11 +548,11 @@
   </div>
 
   <div class="snack-row">
-    <div class="meal-type">Snack · Mid-day</div>
+    <div class="meal-type">Snack · Mid-day · ~830 kcal total</div>
     <div class="snack-items">
-      <div class="snack-item">Greek Yogurt (1 cup)<span>~200 kcal · 20g protein</span></div>
-      <div class="snack-item">Mixed Nuts (1.5 oz)<span>~250 kcal · 6g protein</span></div>
-      <div class="snack-item">Sourdough + Avocado<span>~320 kcal · 8g protein</span></div>
+      <div class="snack-item">Greek Yogurt (1 cup full fat)<span>~220 kcal · 20g protein</span></div>
+      <div class="snack-item">Mixed Nuts (2 oz)<span>~340 kcal · 8g protein</span></div>
+      <div class="snack-item">Sourdough + Avocado + drizzle olive oil<span>~370 kcal · 8g protein</span></div>
     </div>
   </div>
 
@@ -578,6 +613,7 @@
 </div>
 
 <!-- TUESDAY -->
+
 <div class="day-content" id="day-1">
   <div class="day-header">
     <div class="day-title">Tuesday</div>
@@ -613,10 +649,11 @@
   </div>
 
   <div class="snack-row">
-    <div class="meal-type">Snack · Mid-day</div>
+    <div class="meal-type">Snack · Mid-day · ~1,050 kcal total</div>
     <div class="snack-items">
-      <div class="snack-item">Protein shake (2 scoops)<span>~300 kcal · 50g protein</span></div>
+      <div class="snack-item">Protein shake (2 scoops, whole milk)<span>~420 kcal · 55g protein</span></div>
       <div class="snack-item">Banana + PB (2 tbsp)<span>~300 kcal · 8g protein</span></div>
+      <div class="snack-item">Granola bar or mixed nuts (1.5 oz)<span>~280 kcal · 6g protein</span></div>
     </div>
   </div>
 
@@ -676,6 +713,7 @@
 </div>
 
 <!-- WEDNESDAY -->
+
 <div class="day-content" id="day-2">
   <div class="day-header">
     <div class="day-title">Wednesday</div>
@@ -711,11 +749,14 @@
   </div>
 
   <div class="snack-row">
-    <div class="meal-type">Snack · Mid-day</div>
+    <div class="meal-type">Snack · Mid-day · ~1,700 kcal total</div>
     <div class="snack-items">
+      <div class="snack-item">Protein shake (2 scoops, whole milk)<span>~420 kcal · 55g protein</span></div>
       <div class="snack-item">Tuna on crackers (1 can)<span>~280 kcal · 30g protein</span></div>
       <div class="snack-item">String cheese x2<span>~160 kcal · 14g protein</span></div>
-      <div class="snack-item">Apple + almond butter<span>~280 kcal · 7g protein</span></div>
+      <div class="snack-item">Apple + almond butter (2 tbsp)<span>~280 kcal · 7g protein</span></div>
+      <div class="snack-item">Mixed nuts (1.5 oz)<span>~260 kcal · 6g protein</span></div>
+      <div class="snack-item">Greek yogurt (1 cup full fat)<span>~220 kcal · 20g protein</span></div>
     </div>
   </div>
 
@@ -749,6 +790,7 @@
 </div>
 
 <!-- THURSDAY -->
+
 <div class="day-content" id="day-3">
   <div class="day-header">
     <div class="day-title">Thursday</div>
@@ -784,10 +826,12 @@
   </div>
 
   <div class="snack-row">
-    <div class="meal-type">Snack · Mid-day</div>
+    <div class="meal-type">Snack · Mid-day · ~1,120 kcal total</div>
     <div class="snack-items">
-      <div class="snack-item">Protein shake + whole milk<span>~400 kcal · 55g protein</span></div>
+      <div class="snack-item">Protein shake (2 scoops, whole milk)<span>~420 kcal · 55g protein</span></div>
       <div class="snack-item">Trail mix (2 oz)<span>~280 kcal · 7g protein</span></div>
+      <div class="snack-item">Banana + PB (2 tbsp)<span>~300 kcal · 8g protein</span></div>
+      <div class="snack-item">String cheese x2<span>~160 kcal · 14g protein</span></div>
     </div>
   </div>
 
@@ -847,6 +891,7 @@
 </div>
 
 <!-- FRIDAY -->
+
 <div class="day-content" id="day-4">
   <div class="day-header">
     <div class="day-title">Friday</div>
@@ -882,10 +927,14 @@
   </div>
 
   <div class="snack-row">
-    <div class="meal-type">Snack · Mid-day</div>
+    <div class="meal-type">Snack · Mid-day · ~1,770 kcal total</div>
     <div class="snack-items">
+      <div class="snack-item">Protein shake (2 scoops, whole milk)<span>~420 kcal · 55g protein</span></div>
       <div class="snack-item">Hard boiled eggs x3<span>~210 kcal · 18g protein</span></div>
-      <div class="snack-item">Sourdough + almond butter<span>~380 kcal · 12g protein</span></div>
+      <div class="snack-item">Sourdough + almond butter (2 tbsp)<span>~380 kcal · 12g protein</span></div>
+      <div class="snack-item">Mixed nuts (2 oz)<span>~340 kcal · 8g protein</span></div>
+      <div class="snack-item">Greek yogurt (1 cup full fat)<span>~220 kcal · 20g protein</span></div>
+      <div class="snack-item">Banana<span>~105 kcal · 1g protein</span></div>
     </div>
   </div>
 
@@ -919,6 +968,7 @@
 </div>
 
 <!-- SATURDAY -->
+
 <div class="day-content" id="day-5">
   <div class="day-header">
     <div class="day-title">Saturday</div>
@@ -954,10 +1004,14 @@
   </div>
 
   <div class="snack-row">
-    <div class="meal-type">Snack · Afternoon</div>
+    <div class="meal-type">Snack · Afternoon · ~1,780 kcal total</div>
     <div class="snack-items">
-      <div class="snack-item">Protein shake<span>~300 kcal · 50g protein</span></div>
-      <div class="snack-item">Cottage cheese + pineapple<span>~250 kcal · 22g protein</span></div>
+      <div class="snack-item">Protein shake (2 scoops, whole milk)<span>~420 kcal · 55g protein</span></div>
+      <div class="snack-item">Cottage cheese + pineapple (1 cup)<span>~250 kcal · 22g protein</span></div>
+      <div class="snack-item">Mixed nuts (2 oz)<span>~340 kcal · 8g protein</span></div>
+      <div class="snack-item">Sourdough + PB (2 tbsp)<span>~380 kcal · 12g protein</span></div>
+      <div class="snack-item">Banana<span>~105 kcal · 1g protein</span></div>
+      <div class="snack-item">String cheese x2<span>~160 kcal · 14g protein</span></div>
     </div>
   </div>
 
@@ -992,6 +1046,7 @@
 </div>
 
 <!-- SUNDAY -->
+
 <div class="day-content" id="day-6">
   <div class="day-header">
     <div class="day-title">Sunday</div>
@@ -1026,11 +1081,14 @@
   </div>
 
   <div class="snack-row">
-    <div class="meal-type">Snack · Mid-day</div>
+    <div class="meal-type">Snack · Mid-day · ~1,850 kcal total</div>
     <div class="snack-items">
+      <div class="snack-item">Protein shake (2 scoops, whole milk)<span>~420 kcal · 55g protein</span></div>
       <div class="snack-item">Beef jerky (2 oz)<span>~160 kcal · 20g protein</span></div>
-      <div class="snack-item">Mixed nuts + dark chocolate<span>~320 kcal · 7g protein</span></div>
-      <div class="snack-item">Protein shake<span>~300 kcal · 50g protein</span></div>
+      <div class="snack-item">Mixed nuts + dark chocolate (2 oz)<span>~380 kcal · 7g protein</span></div>
+      <div class="snack-item">Sourdough + almond butter (2 tbsp)<span>~380 kcal · 10g protein</span></div>
+      <div class="snack-item">Greek yogurt (1 cup full fat)<span>~220 kcal · 20g protein</span></div>
+      <div class="snack-item">Banana<span>~105 kcal · 1g protein</span></div>
     </div>
   </div>
 
@@ -1065,128 +1123,284 @@
 
 <div class="divider"></div>
 
-<!-- GROCERY LIST -->
+<!-- GROCERY + INVENTORY SECTION -->
+
 <div class="grocery-section">
-  <div class="grocery-title">Weekly Grocery List</div>
-  <div class="grocery-sub">Split between Walmart & Publix — target $100/week total</div>
+  <div class="grocery-title">Grocery & Inventory</div>
+  <div class="grocery-sub">Complete list — every ingredient across all 7 days</div>
 
-  <!-- Store toggle -->
-  <div style="display:flex; gap:8px; margin-bottom:20px;">
-    <button onclick="showStore('walmart')" id="btn-walmart" style="flex:1; padding:12px; border-radius:6px; border:none; background:var(--gold); color:var(--bg); font-family:'DM Sans',sans-serif; font-size:13px; font-weight:500; cursor:pointer; letter-spacing:0.5px;">🛒 Walmart ~$68</button>
-    <button onclick="showStore('publix')" id="btn-publix" style="flex:1; padding:12px; border-radius:6px; border:1px solid var(--border); background:var(--card); color:var(--muted); font-family:'DM Sans',sans-serif; font-size:13px; font-weight:500; cursor:pointer; letter-spacing:0.5px;">🟢 Publix ~$32</button>
+  <!-- Main tab toggle -->
+
+  <div style="display:flex; gap:8px; margin-bottom:16px;">
+    <button onclick="showTab('grocery')" id="btn-tab-grocery" style="flex:1; padding:12px; border-radius:6px; border:none; background:var(--gold); color:var(--bg); font-family:'DM Sans',sans-serif; font-size:13px; font-weight:500; cursor:pointer;">🛒 Grocery List</button>
+    <button onclick="showTab('inventory')" id="btn-tab-inventory" style="flex:1; padding:12px; border-radius:6px; border:1px solid var(--border); background:var(--card); color:var(--muted); font-family:'DM Sans',sans-serif; font-size:13px; font-weight:500; cursor:pointer;">📦 Inventory Check</button>
   </div>
 
-  <!-- WALMART LIST -->
-  <div id="store-walmart">
-    <div style="background:var(--card); border:1px solid var(--border); border-radius:10px; overflow:hidden; margin-bottom:12px;">
-      <div style="background:rgba(201,168,76,0.08); padding:12px 18px; border-bottom:1px solid var(--border);">
-        <div style="font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:500;">Proteins · ~$28</div>
-      </div>
-      <ul style="list-style:none; padding:0 18px;">
-        <li class="grocery-line"><span>Ground beef 80/20 (3 lbs)</span><span class="price">~$12.00</span></li>
-        <li class="grocery-line"><span>Eggs, 2 dozen (Great Value)</span><span class="price">~$5.50</span></li>
-        <li class="grocery-line"><span>Shrimp, frozen 1 lb (Great Value)</span><span class="price">~$6.00</span></li>
-        <li class="grocery-line"><span>Tuna cans x4 (Great Value)</span><span class="price">~$4.50</span></li>
-      </ul>
+  <!-- GROCERY TAB -->
+
+  <div id="tab-grocery">
+    <div style="display:flex; gap:8px; margin-bottom:16px;">
+      <button onclick="showStore('walmart')" id="btn-walmart" style="flex:1; padding:10px; border-radius:6px; border:none; background:var(--gold); color:var(--bg); font-family:'DM Sans',sans-serif; font-size:12px; font-weight:500; cursor:pointer;">🛒 Walmart ~$72</button>
+      <button onclick="showStore('publix')" id="btn-publix" style="flex:1; padding:10px; border-radius:6px; border:1px solid var(--border); background:var(--card); color:var(--muted); font-family:'DM Sans',sans-serif; font-size:12px; font-weight:500; cursor:pointer;">🟢 Publix ~$32</button>
     </div>
 
-    <div style="background:var(--card); border:1px solid var(--border); border-radius:10px; overflow:hidden; margin-bottom:12px;">
-      <div style="background:rgba(201,168,76,0.08); padding:12px 18px; border-bottom:1px solid var(--border);">
-        <div style="font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:500;">Dairy & Fats · ~$18</div>
-      </div>
-      <ul style="list-style:none; padding:0 18px;">
-        <li class="grocery-line"><span>Whole milk, 1 gallon (Great Value)</span><span class="price">~$3.80</span></li>
-        <li class="grocery-line"><span>Cottage cheese, 24 oz (Great Value)</span><span class="price">~$3.50</span></li>
-        <li class="grocery-line"><span>Greek yogurt, 32 oz (Great Value)</span><span class="price">~$4.50</span></li>
-        <li class="grocery-line"><span>Butter, 2 sticks (Great Value)</span><span class="price">~$3.00</span></li>
-        <li class="grocery-line"><span>Shredded mozzarella 2 cups</span><span class="price">~$3.20</span></li>
-      </ul>
+```
+<!-- WALMART -->
+<div id="store-walmart">
+  <div style="background:var(--card); border:1px solid var(--border); border-radius:10px; overflow:hidden; margin-bottom:12px;">
+    <div style="background:rgba(201,168,76,0.08); padding:12px 18px; border-bottom:1px solid var(--border);">
+      <div style="font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:500;">Proteins · ~$28</div>
     </div>
-
-    <div style="background:var(--card); border:1px solid var(--border); border-radius:10px; overflow:hidden; margin-bottom:12px;">
-      <div style="background:rgba(201,168,76,0.08); padding:12px 18px; border-bottom:1px solid var(--border);">
-        <div style="font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:500;">Carbs & Pantry · ~$22</div>
-      </div>
-      <ul style="list-style:none; padding:0 18px;">
-        <li class="grocery-line"><span>Pasta (rigatoni + penne + shells)</span><span class="price">~$4.50</span></li>
-        <li class="grocery-line"><span>Potato gnocchi 1 lb</span><span class="price">~$2.50</span></li>
-        <li class="grocery-line"><span>Rolled oats, large (Great Value)</span><span class="price">~$3.50</span></li>
-        <li class="grocery-line"><span>Yukon gold potatoes, 5 lb bag</span><span class="price">~$4.50</span></li>
-        <li class="grocery-line"><span>Sweet potatoes x3</span><span class="price">~$2.50</span></li>
-        <li class="grocery-line"><span>Olive oil (Great Value, 16 oz)</span><span class="price">~$4.50</span></li>
-        <li class="grocery-line"><span>Peanut butter (Great Value, large)</span><span class="price">~$3.50</span></li>
-        <li class="grocery-line"><span>Honey (Great Value)</span><span class="price">~$3.00</span></li>
-        <li class="grocery-line"><span>Soy sauce + sesame oil</span><span class="price">~$4.00</span></li>
-        <li class="grocery-line"><span>Marinara sauce jar</span><span class="price">~$2.50</span></li>
-        <li class="grocery-line"><span>Canned San Marzano tomatoes</span><span class="price">~$2.00</span></li>
-      </ul>
-    </div>
-
-    <div style="background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.25); border-radius:8px; padding:14px 18px; display:flex; justify-content:space-between; align-items:center;">
-      <span style="font-size:13px; color:var(--cream); font-weight:500;">Walmart Subtotal</span>
-      <span style="font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:var(--gold-light);">~$68</span>
-    </div>
+    <ul style="list-style:none; padding:0 18px;">
+      <li class="grocery-line"><span>Ground beef 80/20 (3 lbs)</span><span class="price">~$12.00</span></li>
+      <li class="grocery-line"><span>Eggs, 2 dozen (Great Value)</span><span class="price">~$5.50</span></li>
+      <li class="grocery-line"><span>Shrimp, frozen 1 lb (Great Value)</span><span class="price">~$6.00</span></li>
+      <li class="grocery-line"><span>Tuna cans x4 (Great Value)</span><span class="price">~$4.50</span></li>
+      <li class="grocery-line"><span>Whey protein powder (if needed)</span><span class="price">~$25.00</span></li>
+      <li class="grocery-line"><span>Beef jerky, 2 packs (Great Value)</span><span class="price">~$6.00</span></li>
+    </ul>
   </div>
 
-  <!-- PUBLIX LIST -->
-  <div id="store-publix" style="display:none;">
-    <div style="background:rgba(34,139,34,0.06); border:1px solid rgba(34,139,34,0.2); border-radius:8px; padding:12px 16px; margin-bottom:14px; font-size:12px; color:#8ec98e; line-height:1.6;">
-      💡 <strong>Publix tip:</strong> Check the weekly BOGO flyer before you go — salmon and shrimp go BOGO regularly. If salmon is BOGO, grab 2 lbs and freeze one.
+  <div style="background:var(--card); border:1px solid var(--border); border-radius:10px; overflow:hidden; margin-bottom:12px;">
+    <div style="background:rgba(201,168,76,0.08); padding:12px 18px; border-bottom:1px solid var(--border);">
+      <div style="font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:500;">Dairy & Fats · ~$22</div>
     </div>
-
-    <div style="background:var(--card); border:1px solid var(--border); border-radius:10px; overflow:hidden; margin-bottom:12px;">
-      <div style="background:rgba(201,168,76,0.08); padding:12px 18px; border-bottom:1px solid var(--border);">
-        <div style="font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:500;">Fresh Proteins · ~$18</div>
-      </div>
-      <ul style="list-style:none; padding:0 18px;">
-        <li class="grocery-line"><span>Salmon fillet, 1 lb (fresh, Publix seafood)</span><span class="price">~$10.00</span></li>
-        <li class="grocery-line"><span>Turkey sausage, 1 pack</span><span class="price">~$5.50</span></li>
-        <li class="grocery-line"><span>Ricotta, whole milk (Publix brand)</span><span class="price">~$4.00</span></li>
-      </ul>
-    </div>
-
-    <div style="background:var(--card); border:1px solid var(--border); border-radius:10px; overflow:hidden; margin-bottom:12px;">
-      <div style="background:rgba(201,168,76,0.08); padding:12px 18px; border-bottom:1px solid var(--border);">
-        <div style="font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:500;">Fresh Produce · ~$10</div>
-      </div>
-      <ul style="list-style:none; padding:0 18px;">
-        <li class="grocery-line"><span>Bananas, blueberries, strawberries</span><span class="price">~$5.00</span></li>
-        <li class="grocery-line"><span>Spinach, large bag</span><span class="price">~$3.50</span></li>
-        <li class="grocery-line"><span>Bell peppers + onions + garlic</span><span class="price">~$4.00</span></li>
-        <li class="grocery-line"><span>Broccoli (1 head)</span><span class="price">~$2.50</span></li>
-      </ul>
-    </div>
-
-    <div style="background:var(--card); border:1px solid var(--border); border-radius:10px; overflow:hidden; margin-bottom:12px;">
-      <div style="background:rgba(201,168,76,0.08); padding:12px 18px; border-bottom:1px solid var(--border);">
-        <div style="font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:500;">Bread & Specialty · ~$10</div>
-      </div>
-      <ul style="list-style:none; padding:0 18px;">
-        <li class="grocery-line"><span>Sourdough loaf (Publix bakery)</span><span class="price">~$4.00</span></li>
-        <li class="grocery-line"><span>Brioche buns (Publix bakery)</span><span class="price">~$4.50</span></li>
-        <li class="grocery-line"><span>Hoagie rolls x4</span><span class="price">~$3.50</span></li>
-        <li class="grocery-line"><span>Sun-dried tomatoes jar</span><span class="price">~$4.00</span></li>
-        <li class="grocery-line"><span>Parmesan block</span><span class="price">~$5.00</span></li>
-        <li class="grocery-line"><span>Heavy cream, 1 pint</span><span class="price">~$3.50</span></li>
-      </ul>
-    </div>
-
-    <div style="background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.25); border-radius:8px; padding:14px 18px; display:flex; justify-content:space-between; align-items:center;">
-      <span style="font-size:13px; color:var(--cream); font-weight:500;">Publix Subtotal</span>
-      <span style="font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:var(--gold-light);">~$32</span>
-    </div>
+    <ul style="list-style:none; padding:0 18px;">
+      <li class="grocery-line"><span>Whole milk, 1 gallon (Great Value)</span><span class="price">~$3.80</span></li>
+      <li class="grocery-line"><span>Cottage cheese, 24 oz (Great Value)</span><span class="price">~$3.50</span></li>
+      <li class="grocery-line"><span>Greek yogurt, 32 oz (Great Value)</span><span class="price">~$4.50</span></li>
+      <li class="grocery-line"><span>Butter, 2 sticks (Great Value)</span><span class="price">~$3.00</span></li>
+      <li class="grocery-line"><span>Shredded mozzarella 2 cups</span><span class="price">~$3.20</span></li>
+      <li class="grocery-line"><span>String cheese x8 (Great Value)</span><span class="price">~$4.00</span></li>
+      <li class="grocery-line"><span>American cheese slices</span><span class="price">~$3.50</span></li>
+    </ul>
   </div>
 
-  <!-- TOTAL BAR -->
-  <div style="background:var(--surface); border:1px solid var(--gold); border-radius:10px; padding:18px; margin-top:16px; display:flex; justify-content:space-between; align-items:center;">
-    <div>
-      <div style="font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:500; margin-bottom:4px;">Weekly Total</div>
-      <div style="font-size:12px; color:var(--muted);">Walmart + Publix combined</div>
+  <div style="background:var(--card); border:1px solid var(--border); border-radius:10px; overflow:hidden; margin-bottom:12px;">
+    <div style="background:rgba(201,168,76,0.08); padding:12px 18px; border-bottom:1px solid var(--border);">
+      <div style="font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:500;">Carbs & Pantry · ~$28</div>
     </div>
-    <div style="text-align:right;">
-      <div style="font-family:'Playfair Display',serif; font-size:30px; font-weight:900; color:var(--gold-light);">~$100</div>
-      <div style="font-size:11px; color:var(--green);">✓ On budget</div>
+    <ul style="list-style:none; padding:0 18px;">
+      <li class="grocery-line"><span>Pasta — rigatoni, penne, jumbo shells</span><span class="price">~$5.50</span></li>
+      <li class="grocery-line"><span>Potato gnocchi 1 lb</span><span class="price">~$2.50</span></li>
+      <li class="grocery-line"><span>Farro, 1 bag</span><span class="price">~$3.50</span></li>
+      <li class="grocery-line"><span>Rolled oats, large (Great Value)</span><span class="price">~$3.50</span></li>
+      <li class="grocery-line"><span>Granola, 1 bag</span><span class="price">~$3.50</span></li>
+      <li class="grocery-line"><span>Yukon gold potatoes, 5 lb bag</span><span class="price">~$4.50</span></li>
+      <li class="grocery-line"><span>Sweet potatoes x3</span><span class="price">~$2.50</span></li>
+      <li class="grocery-line"><span>Crackers (for tuna)</span><span class="price">~$2.50</span></li>
+      <li class="grocery-line"><span>Trail mix, 1 bag</span><span class="price">~$5.00</span></li>
+      <li class="grocery-line"><span>Mixed nuts, 1 bag (Great Value)</span><span class="price">~$6.00</span></li>
+      <li class="grocery-line"><span>Dark chocolate bar x2</span><span class="price">~$3.50</span></li>
+      <li class="grocery-line"><span>Chia seeds</span><span class="price">~$4.00</span></li>
+    </ul>
+  </div>
+
+  <div style="background:var(--card); border:1px solid var(--border); border-radius:10px; overflow:hidden; margin-bottom:12px;">
+    <div style="background:rgba(201,168,76,0.08); padding:12px 18px; border-bottom:1px solid var(--border);">
+      <div style="font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:500;">Oils, Sauces & Spices · ~$14</div>
     </div>
+    <ul style="list-style:none; padding:0 18px;">
+      <li class="grocery-line"><span>Olive oil (Great Value, 16 oz)</span><span class="price">~$4.50</span></li>
+      <li class="grocery-line"><span>Peanut butter, large (Great Value)</span><span class="price">~$3.50</span></li>
+      <li class="grocery-line"><span>Almond butter</span><span class="price">~$5.50</span></li>
+      <li class="grocery-line"><span>Honey (Great Value)</span><span class="price">~$3.00</span></li>
+      <li class="grocery-line"><span>Maple syrup (Great Value)</span><span class="price">~$4.50</span></li>
+      <li class="grocery-line"><span>Soy sauce + sesame oil</span><span class="price">~$4.00</span></li>
+      <li class="grocery-line"><span>Marinara sauce jar</span><span class="price">~$2.50</span></li>
+      <li class="grocery-line"><span>Canned San Marzano tomatoes</span><span class="price">~$2.00</span></li>
+      <li class="grocery-line"><span>Brown sugar (for Korean beef)</span><span class="price">~$2.00</span></li>
+      <li class="grocery-line"><span>Breadcrumbs (for meatballs)</span><span class="price">~$2.00</span></li>
+      <li class="grocery-line"><span>Smoked paprika + cumin + Italian seasoning</span><span class="price">~$5.00</span></li>
+      <li class="grocery-line"><span>Red chili flakes</span><span class="price">~$2.00</span></li>
+      <li class="grocery-line"><span>Vanilla extract + baking powder</span><span class="price">~$4.00</span></li>
+    </ul>
+  </div>
+
+  <div style="background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.25); border-radius:8px; padding:14px 18px; display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+    <span style="font-size:13px; color:var(--cream); font-weight:500;">Walmart Subtotal</span>
+    <span style="font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:var(--gold-light);">~$72</span>
+  </div>
+  <div style="font-size:11px; color:var(--muted); padding:4px 4px 12px; line-height:1.5;">* Skip whey protein if you already have it — saves ~$25. Spices are one-time buys that last months.</div>
+</div>
+
+<!-- PUBLIX -->
+<div id="store-publix" style="display:none;">
+  <div style="background:rgba(34,139,34,0.06); border:1px solid rgba(34,139,34,0.2); border-radius:8px; padding:12px 16px; margin-bottom:14px; font-size:12px; color:#8ec98e; line-height:1.6;">
+    💡 <strong>Publix tip:</strong> Check the weekly BOGO flyer — salmon goes BOGO regularly. Grab 2 lbs and freeze one.
+  </div>
+
+  <div style="background:var(--card); border:1px solid var(--border); border-radius:10px; overflow:hidden; margin-bottom:12px;">
+    <div style="background:rgba(201,168,76,0.08); padding:12px 18px; border-bottom:1px solid var(--border);">
+      <div style="font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:500;">Fresh Proteins · ~$18</div>
+    </div>
+    <ul style="list-style:none; padding:0 18px;">
+      <li class="grocery-line"><span>Salmon fillet, 1 lb (Publix seafood)</span><span class="price">~$10.00</span></li>
+      <li class="grocery-line"><span>Turkey sausage, 1 pack</span><span class="price">~$5.50</span></li>
+      <li class="grocery-line"><span>Ricotta, whole milk (Publix brand)</span><span class="price">~$4.00</span></li>
+    </ul>
+  </div>
+
+  <div style="background:var(--card); border:1px solid var(--border); border-radius:10px; overflow:hidden; margin-bottom:12px;">
+    <div style="background:rgba(201,168,76,0.08); padding:12px 18px; border-bottom:1px solid var(--border);">
+      <div style="font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:500;">Fresh Produce · ~$10</div>
+    </div>
+    <ul style="list-style:none; padding:0 18px;">
+      <li class="grocery-line"><span>Bananas (bunch)</span><span class="price">~$1.50</span></li>
+      <li class="grocery-line"><span>Blueberries + strawberries</span><span class="price">~$5.50</span></li>
+      <li class="grocery-line"><span>Apples x4</span><span class="price">~$3.00</span></li>
+      <li class="grocery-line"><span>Pineapple chunks (for cottage cheese)</span><span class="price">~$2.50</span></li>
+      <li class="grocery-line"><span>Spinach, large bag</span><span class="price">~$3.50</span></li>
+      <li class="grocery-line"><span>Bell peppers x2 + onions x2</span><span class="price">~$4.00</span></li>
+      <li class="grocery-line"><span>Garlic, 2 heads</span><span class="price">~$1.50</span></li>
+      <li class="grocery-line"><span>Broccoli, 1 head</span><span class="price">~$2.50</span></li>
+      <li class="grocery-line"><span>Mushrooms (for omelette)</span><span class="price">~$2.50</span></li>
+      <li class="grocery-line"><span>Fresh lemon x2</span><span class="price">~$1.50</span></li>
+      <li class="grocery-line"><span>Fresh parsley or dill</span><span class="price">~$1.50</span></li>
+      <li class="grocery-line"><span>Green onions (for Korean bowl)</span><span class="price">~$1.00</span></li>
+    </ul>
+  </div>
+
+  <div style="background:var(--card); border:1px solid var(--border); border-radius:10px; overflow:hidden; margin-bottom:12px;">
+    <div style="background:rgba(201,168,76,0.08); padding:12px 18px; border-bottom:1px solid var(--border);">
+      <div style="font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:500;">Bread, Dairy & Specialty · ~$14</div>
+    </div>
+    <ul style="list-style:none; padding:0 18px;">
+      <li class="grocery-line"><span>Sourdough loaf (Publix bakery)</span><span class="price">~$4.00</span></li>
+      <li class="grocery-line"><span>Brioche buns (Publix bakery)</span><span class="price">~$4.50</span></li>
+      <li class="grocery-line"><span>Brioche loaf (for French toast)</span><span class="price">~$4.50</span></li>
+      <li class="grocery-line"><span>Hoagie rolls x4</span><span class="price">~$3.50</span></li>
+      <li class="grocery-line"><span>Provolone slices</span><span class="price">~$3.50</span></li>
+      <li class="grocery-line"><span>Parmesan block</span><span class="price">~$5.00</span></li>
+      <li class="grocery-line"><span>Heavy cream, 1 pint</span><span class="price">~$3.50</span></li>
+      <li class="grocery-line"><span>Sun-dried tomatoes jar</span><span class="price">~$4.00</span></li>
+    </ul>
+  </div>
+
+  <div style="background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.25); border-radius:8px; padding:14px 18px; display:flex; justify-content:space-between; align-items:center;">
+    <span style="font-size:13px; color:var(--cream); font-weight:500;">Publix Subtotal</span>
+    <span style="font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:var(--gold-light);">~$32</span>
+  </div>
+</div>
+
+<!-- TOTAL BAR -->
+<div style="background:var(--surface); border:1px solid var(--gold); border-radius:10px; padding:18px; margin-top:16px; display:flex; justify-content:space-between; align-items:center;">
+  <div>
+    <div style="font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:500; margin-bottom:4px;">Weekly Total</div>
+    <div style="font-size:12px; color:var(--muted);">Walmart + Publix combined</div>
+  </div>
+  <div style="text-align:right;">
+    <div style="font-family:'Playfair Display',serif; font-size:30px; font-weight:900; color:var(--gold-light);">~$104</div>
+    <div style="font-size:11px; color:var(--muted);">Skip spices/whey if you have them → ~$75</div>
+  </div>
+</div>
+```
+
+  </div>
+
+  <!-- INVENTORY TAB -->
+
+  <div id="tab-inventory" style="display:none;">
+    <div style="background:rgba(201,168,76,0.06); border:1px solid rgba(201,168,76,0.2); border-radius:8px; padding:12px 16px; margin-bottom:16px; font-size:12px; color:#b0a892; line-height:1.6;">
+      Go through your kitchen and tap each item you already have. Anything unchecked = add it to your shopping list.
+    </div>
+
+```
+<div id="inventory-list">
+  <!-- Proteins -->
+  <div style="font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:500; margin:16px 0 8px;">Proteins</div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Ground beef 80/20</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Eggs (2 dozen needed)</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Frozen shrimp (1 lb)</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Tuna cans x4</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Turkey sausage</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Salmon fillet (fresh)</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Whey protein powder</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Beef jerky</span></div>
+
+  <!-- Dairy -->
+  <div style="font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:500; margin:16px 0 8px;">Dairy & Fats</div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Whole milk (1 gallon)</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Cottage cheese (full fat)</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Greek yogurt (32 oz)</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Butter (2 sticks)</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Heavy cream (1 pint)</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Ricotta, whole milk</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Shredded mozzarella</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Parmesan block</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>String cheese x8</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>American cheese slices</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Provolone slices</span></div>
+
+  <!-- Carbs -->
+  <div style="font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:500; margin:16px 0 8px;">Carbs & Bread</div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Rigatoni pasta</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Penne or fettuccine pasta</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Jumbo pasta shells</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Potato gnocchi (1 lb)</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Farro (1 bag)</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Rolled oats (large)</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Granola</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Chia seeds</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Yukon gold potatoes (5 lbs)</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Sweet potatoes x3</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Sourdough loaf</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Brioche buns + loaf</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Hoagie rolls x4</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Crackers (for tuna)</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Breadcrumbs</span></div>
+
+  <!-- Snacks -->
+  <div style="font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:500; margin:16px 0 8px;">Snacks</div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Mixed nuts (large bag)</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Trail mix (1 bag)</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Dark chocolate x2 bars</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Peanut butter (large jar)</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Almond butter</span></div>
+
+  <!-- Produce -->
+  <div style="font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:500; margin:16px 0 8px;">Produce</div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Bananas (bunch)</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Blueberries + strawberries</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Apples x4</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Pineapple chunks</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Spinach (large bag)</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Bell peppers x2</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Onions x2</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Garlic, 2 heads</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Broccoli, 1 head</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Mushrooms</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Lemons x2</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Fresh parsley or dill</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Green onions</span></div>
+
+  <!-- Pantry -->
+  <div style="font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:500; margin:16px 0 8px;">Pantry & Sauces</div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Olive oil</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Honey</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Maple syrup</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Soy sauce</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Sesame oil</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Marinara sauce jar</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Canned San Marzano tomatoes</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Sun-dried tomatoes jar</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Brown sugar</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Smoked paprika</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Cumin</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Italian seasoning</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Red chili flakes</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Garlic powder + rosemary</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Vanilla extract</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Baking powder</span></div>
+  <div class="inv-item" onclick="toggleInv(this)"><span class="inv-check">○</span><span>Cinnamon</span></div>
+</div>
+
+<div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:14px 18px; margin-top:16px; display:flex; justify-content:space-between; align-items:center;">
+  <span style="font-size:13px; color:var(--muted);">Items checked (have it)</span>
+  <span id="inv-count" style="font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:var(--gold-light);">0</span>
+</div>
+```
+
   </div>
 </div>
 
@@ -1212,6 +1426,25 @@ function switchDay(index) {
   });
 }
 
+function showTab(tab) {
+  document.getElementById('tab-grocery').style.display = tab === 'grocery' ? 'block' : 'none';
+  document.getElementById('tab-inventory').style.display = tab === 'inventory' ? 'block' : 'none';
+  document.getElementById('btn-tab-grocery').style.background = tab === 'grocery' ? 'var(--gold)' : 'var(--card)';
+  document.getElementById('btn-tab-grocery').style.color = tab === 'grocery' ? 'var(--bg)' : 'var(--muted)';
+  document.getElementById('btn-tab-grocery').style.border = tab === 'grocery' ? 'none' : '1px solid var(--border)';
+  document.getElementById('btn-tab-inventory').style.background = tab === 'inventory' ? 'var(--gold)' : 'var(--card)';
+  document.getElementById('btn-tab-inventory').style.color = tab === 'inventory' ? 'var(--bg)' : 'var(--muted)';
+  document.getElementById('btn-tab-inventory').style.border = tab === 'inventory' ? 'none' : '1px solid var(--border)';
+}
+
+function toggleInv(el) {
+  el.classList.toggle('checked');
+  const check = el.querySelector('.inv-check');
+  check.textContent = el.classList.contains('checked') ? '✓' : '○';
+  const count = document.querySelectorAll('.inv-item.checked').length;
+  document.getElementById('inv-count').textContent = count;
+}
+
 function showStore(store) {
   document.getElementById('store-walmart').style.display = store === 'walmart' ? 'block' : 'none';
   document.getElementById('store-publix').style.display = store === 'publix' ? 'block' : 'none';
@@ -1230,5 +1463,6 @@ function toggleMeal(card) {
   card.classList.toggle('open', !isOpen);
 }
 </script>
+
 </body>
 </html>
